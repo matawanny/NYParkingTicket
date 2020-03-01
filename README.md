@@ -3,6 +3,7 @@ Analyzing millions of NYC Parking Violations
 
 
 Inputs/Outputs
+
 Here are all the command line arguments your script must support:
 $ docker run -e APP_KEY={YOUR_APP_KEY} -t bigdata1:1.0 python main.py --page_size=1000 --num_pages=4 --output=results.json
 Some key arguments here:
