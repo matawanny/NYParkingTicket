@@ -19,6 +19,6 @@ Solutions in Windows Powershell
 
 docker build -t bigdat1:1.0 .
 
-docker run -e APP_KEY=%APP_KEY% -v C:\project1\bigdata1:/app/foo -it bigdata1:1.0 python main.py --page_size=10 --num_pages=5 --output=foo/results.json
+docker run -e APP_KEY=%APP_KEY% -v C:\project1\bigdata1:/app/foo -it bigdata1:1.0 python main.py --page_size=1000 --num_pages=4 --output=foo/results.json
 
 
