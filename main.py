@@ -11,29 +11,32 @@ if __name__ == "__main__":
     num_pages = int(num_pages_str.split('=')[1])
     # print(f"page_size={page_size}, num_pages={num_pages}")
     try:
-        output = argv[3]
+        output_str = argv[3]
     except Exception:
-        output = None
+        output_str = None
     location = 'nc67-uf89'
 
-    limit_size = int (page_size / num_pages)
+    limit_size = int(page_size / num_pages)
 
-    # print(f"limit_size={str(limit_size)}")
-    with Service(app_key) as service:
-        total_size = service.get_size(location)
-        print(f"total_size={total_size}")
-        print(service.get_info(location, limit_size))
-        offset = 0
-        for i in range(num_pages-1):
-            print(f"i={i}")
-            offset += limit_size
-            if offset >= total_size:
-                break;
-            print(service.get_next_info(location, limit_size, offset))
-
-    # with open(input_fn, "r") as fh, open(output_fn, "w") as fw:
-    # 	for line in fh:
-    # 		line = line.strip('\n')
-    # 		val, base, curr = line.split(' ')
-    # 		val = float(val)
-    # 		fw.write(f"{convert(val, curr, base)} {curr}\n
+    if output_str is None:
+        with Service(app_key) as service:
+            total_size = service.get_size(location)
+            # print(f"total_size={total_size}")
+            print(service.get_info(location, limit_size))
+            offset = 0
+            for i in range(num_pages-1):
+                offset += limit_size
+                if offset >= total_size:
+                    break;
+                print(service.get_next_info(location, limit_size, offset))
+    else:
+        output = output_str.split("=")[1]
+        with Service(app_key) as service, open(output, "w") as fw:
+            total_size = service.get_size(location)
+            fw.write(f"{service.get_info(location, limit_size)}\n")
+            offset = 0
+            for i in range(num_pages-1):
+                offset += limit_size
+                if offset >= total_size:
+                    break;
+                fw.write(f"{service.get_next_info(location, limit_size, offset)}\n")
