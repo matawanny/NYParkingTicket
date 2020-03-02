@@ -30,6 +30,8 @@ docker push laurachan/bigdata1
 Delolyed into AWS EC2
 
 sudo docker login --username=laurachan
+
 sudo docker pull laurachan/bigdata1
+
 sudo docker run -e APP_KEY=$APP_KEY -v $(pwd):/app/foo -it laurachan/bigdata1:2.0 python main.py --page_size=1000 --num_pages=4 --output=foo/results.json
 
