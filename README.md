@@ -17,8 +17,14 @@ It is expected that stdout or results.json will contain the API response, which 
 
 Solutions in Windows Powershell
 
-docker build -t bigdat1:1.0 .
+docker build -t bigdata1:2.0 .
 
-docker run -e APP_KEY=%APP_KEY% -v C:\project1\bigdata1:/app/foo -it bigdata1:1.0 python main.py --page_size=1000 --num_pages=4 --output=foo/results.json
+docker run -e APP_KEY=%APP_KEY% -v C:\project1\bigdata1:/app/foo -it bigdata1:2.0 python main.py --page_size=1000 --num_pages=4 --output=foo/results.json
+
+
+docker login --username=laurachan
+docker images
+docker tag 1e09e6f91d5e laurachan/bigdata1:2.0
+docker push laurachan/bigdata1
 
 
