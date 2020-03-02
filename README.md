@@ -27,4 +27,8 @@ docker images
 docker tag 1e09e6f91d5e laurachan/bigdata1:2.0
 docker push laurachan/bigdata1
 
+Delolyed into aws
+sudo docker login --username=laurachan
+sudo docker pull laurachan/bigdata1
+sudo docker run -e APP_KEY=$APP_KEY -v $(pwd):/app/foo -it laurachan/bigdata1:2.0 python main.py --page_size=1000 --num_pages=4 --output=foo/results.json
 
